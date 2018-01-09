@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnl.boot.web.build.mapper.ColumnMapper">
+	<resultMap id="columnMap" type="com.jnl.boot.web.build.entity.Column">
+		<result property="catalog" column="TABLE_CATALOG"/>
+		<result property="schema" column="TABLE_SCHEMA"/>
+		<result property="tableName" column="TABLE_NAME"/>
+		<result property="cloumn" column="COLUMN_NAME"/>
+		<result property="position" column="ORDINAL_POSITION"/>
+		<result property="defaultVal" column="COLUMN_DEFAULT"/>
+		<result property="isNull" column="IS_NULLABLE"/>
+		<result property="dataType" column="DATA_TYPE" typeHandler="com.jnl.boot.web.handler.DataTypeHandler"/>
+		<result property="maxLength" column="CHARACTER_MAXIMUM_LENGTH"/>
+		<result property="octetLength" column="CHARACTER_OCTET_LENGTH"/>
+		<result property="numericPrecision" column="NUMERIC_PRECISION"/>
+		<result property="scale" column="NUMERIC_SCALE"/>
+		<result property="datetimePrecision" column="DATETIME_PRECISION"/>
+		<result property="setName" column="CHARACTER_SET_NAME"/>
+		<result property="collationName" column="COLLATION_NAME"/>
+		<result property="columnType" column="COLUMN_TYPE"/>
+		<result property="columnKey" column="COLUMN_KEY"/>
+		<result property="extra" column="EXTRA"/>
+		<result property="privileges" column="PRIVILEGES"/>
+		<result property="columnComment" column="COLUMN_COMMENT"/>
+	</resultMap>
+	<select id="list" parameterType="com.jnl.boot.web.build.entity.Column" resultMap="columnMap">
+		select *  from  information_schema.columns
+		<where>
+			<trim>
+				  <if test="tableName!=null">
+					  TABLE_NAME = #{tableName}
+				  </if>
+				  <if test="cloumn!=null">
+					  COLUMN_NAME = #{cloumn}
+				  </if>
+				  <if test="schema!=null">
+					  TABLE_SCHEMA = #{schema}
+				  </if>
+			</trim>
+		</where>
+	</select>
+	<select id="getColumnsByTable" parameterType="com.jnl.boot.web.build.entity.Column" resultMap="columnMap">
+		select *  from  information_schema.columns
+		<where>
+			<trim>
+				  <if test="tableName!=null">
+					  TABLE_NAME = #{tableName}
+				  </if>
+				  <if test="cloumn!=null">
+					  COLUMN_NAME = #{cloumn}
+				  </if>
+				  <if test="schema!=null">
+					  TABLE_SCHEMA = #{schema}
+				  </if>
+			</trim>
+		</where>
+	</select>
+</mapper>

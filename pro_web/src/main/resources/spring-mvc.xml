@@ -61,12 +61,12 @@
 		<beans:property name="defaultAutoCommit" value="true" />
 		<!-- 验证连接有效与否的SQL，不同的数据配置不同 --> 
 		<beans:property name="validationQuery" value="select 1 " /> 
-		<beans:property name="filters" value="stat" /> 
-<!-- 		<beans:property name="proxyFilters"> 
-			<beans:list> 
-				<beans:ref bean="logFilter" /> 
-			</beans:list> 
-		</beans:property> -->
+		<beans:property name="filters" value="stat" />
+		<!-- 		<beans:property name="proxyFilters">
+                    <beans:list>
+                        <beans:ref bean="logFilter" />
+                    </beans:list>
+                </beans:property> -->
 		
 	</beans:bean>
 	

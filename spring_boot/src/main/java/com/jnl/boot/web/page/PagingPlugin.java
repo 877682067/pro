@@ -45,13 +45,14 @@ public class PagingPlugin implements Interceptor {
 		PageParam pageParam = getPageParam(boundSql);
 		if(pageParam ==null)
 		{
-			pageParam = new PageParam();
+			return invocation.proceed();
 		}
 		defaultPage = pageParam.getPage()==null?1:pageParam.getPage();
 		defaultPageSize = pageParam.getPageSize()==null?1:pageParam.getPageSize();
 		int total = getTotal(invocation,metaHandler,boundSql);
 		setTotalToPageParams(pageParam,total);
-		return changeSql(invocation,metaHandler,boundSql,pageParam);
+		changeSql(invocation,metaHandler,boundSql,pageParam);
+		return invocation.proceed();
 	}
 
 
@@ -65,8 +66,7 @@ public class PagingPlugin implements Interceptor {
 		int pageNum = pageParam.getPage()*pageParam.getPageSize();
 		ps.setInt(parameterCount-1, pageNum);
 		ps.setInt(parameterCount, pageNum+pageParam.getPageSize());
-		log.debug(newSql);
-		log.error("-------------------------");
+		log.error(newSql);
 		return ps;
 	}
 

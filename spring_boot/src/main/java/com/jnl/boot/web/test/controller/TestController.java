@@ -1,4 +1,4 @@
-package com.jnl.boot.web.test;
+package com.jnl.boot.web.test.controller;
 
 import java.util.List;
 
@@ -15,8 +15,7 @@ public class TestController {
 	
 	@Autowired
 	private TestMapper  testmapper;
-	
-	@RequestMapping("/")
+	@RequestMapping("/test")
 	public String list() {
 		List ls=testmapper.list(null);
 		logger.info(ls.size()+"");
