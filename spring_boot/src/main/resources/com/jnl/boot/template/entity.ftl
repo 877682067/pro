@@ -1,19 +1,17 @@
-package #{url}.entity;
+package ${packag}.entity;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-public class #{tableName?cap_first}{
+public class ${name?cap_first}{
     <#list columns as column>
 
-    private #{column.type} #{column.name};//#{column.columnComment}
+    private ${column.dataType} ${column.column};//${column.columnComment}
     </#list>
 
     <#list columns as column>
-    public void set#{column.name?cap_first}(#{column.type}  #{column.name}){
-        this.#{column.name} = #{column.name}
+    public void set${column.column?cap_first}(${column.dataType}  ${column.column}){
+        this.${column.column} = ${column.column};
     }
-    public #{column.type} get#{column.name?cap_first}(){
-        return #{column.name};
+    public ${column.dataType} get${column.column?cap_first}(){
+        return ${column.column};
     }
     </#list>
 }

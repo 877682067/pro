@@ -8,7 +8,9 @@ public class Column {
 
     private String tableName;//表名
 
-    private String cloumn;//字段名字
+    private String column;//字段名字
+
+    private String oriName;//字段原始名字
 
     private String position;//列标识号
 
@@ -68,12 +70,12 @@ public class Column {
         this.tableName = tableName;
     }
 
-    public String getCloumn() {
-        return cloumn;
+    public String getColumn() {
+        return column;
     }
 
-    public void setCloumn(String cloumn) {
-        this.cloumn = cloumn;
+    public void setColumn(String column) {
+        this.column = column;
     }
 
     public String getPosition() {
@@ -202,5 +204,13 @@ public class Column {
 
     public void setColumnComment(String columnComment) {
         this.columnComment = columnComment;
+    }
+
+    public String getOriName() {
+        return oriName;
+    }
+
+    public void setOriName(String oriName) {
+        this.oriName = oriName;
     }
 }

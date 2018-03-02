@@ -7,7 +7,8 @@
 		<result property="catalog" column="TABLE_CATALOG"/>
 		<result property="schema" column="TABLE_SCHEMA"/>
 		<result property="tableName" column="TABLE_NAME"/>
-		<result property="cloumn" column="COLUMN_NAME"/>
+		<result property="column" column="COLUMN_NAME" typeHandler="com.jnl.boot.web.handler.ColumnNameHandler"/>
+		<result property="oriName" column="COLUMN_NAME"/>
 		<result property="position" column="ORDINAL_POSITION"/>
 		<result property="defaultVal" column="COLUMN_DEFAULT"/>
 		<result property="isNull" column="IS_NULLABLE"/>
@@ -32,8 +33,8 @@
 				  <if test="tableName!=null">
 					  TABLE_NAME = #{tableName}
 				  </if>
-				  <if test="cloumn!=null">
-					  COLUMN_NAME = #{cloumn}
+				  <if test="column!=null">
+					  COLUMN_NAME = #{column}
 				  </if>
 				  <if test="schema!=null">
 					  TABLE_SCHEMA = #{schema}
@@ -48,8 +49,8 @@
 				  <if test="tableName!=null">
 					  TABLE_NAME = #{tableName}
 				  </if>
-				  <if test="cloumn!=null">
-					  COLUMN_NAME = #{cloumn}
+				  <if test="column!=null">
+					  COLUMN_NAME = #{column}
 				  </if>
 				  <if test="schema!=null">
 					  TABLE_SCHEMA = #{schema}

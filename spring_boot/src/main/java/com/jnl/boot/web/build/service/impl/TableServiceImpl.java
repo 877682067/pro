@@ -20,8 +20,8 @@ public class TableServiceImpl implements TableService {
     public Table getTable(GatherBuildInfo info) {
         List<Column> tableColumns = columnService.getTableColumns(info);
         Table table = new Table();
-        table.setName(info.getTableName());
         table.setDataBase(info.getDataBase().getDataBase());
+        table.setBaseName(info.getTableName());
         table.setColumns(tableColumns);
         return table;
     }

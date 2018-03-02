@@ -1,5 +1,6 @@
 package com.jnl.boot.web.build.controller;
 
+import com.jnl.boot.web.build.entity.Table;
 import com.jnl.boot.web.build.service.BuildService;
 import com.jnl.boot.web.build.vo.GatherBuildInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,10 @@ public class BuildController {
     }
 
     @RequestMapping("/build")
-    public String createInfo(GatherBuildInfo info, HttpServletRequest request){
-        buildService.build(info);
-        return null;
+    public ModelAndView createInfo(GatherBuildInfo info, HttpServletRequest request){
+        Table build = buildService.build(info);
+        ModelAndView view = new ModelAndView("columnInput");
+        view.addObject("table",build);
+        return view;
     }
 }

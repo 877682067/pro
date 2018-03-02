@@ -1,19 +1,22 @@
-package #{url}.entity;
+package ${packag}.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import ${packag}.entity.${name?cap_first};
+import java.util.List;
 
-public class #{tableName?cap_first}{
-    <#list columns as column>
+public interface I${name?cap_first}Service{
 
-    private #{column.type} #{column.name};//#{column.columnComment}
+    <#assign idType="Integer"/>
+    <#list columns as info>
+        <#if info.column =="id">
+            <#assign idType=info.dataType/>
+        </#if>
     </#list>
+    public ${name?cap_first} get${name?cap_first}ById(${idType} id);
 
-    <#list columns as column>
-    public void set#{column.name?cap_first}(#{column.type}  #{column.name}){
-        this.#{column.name} = #{column.name}
-    }
-    public #{column.type} get#{column.name?cap_first}(){
-        return #{column.name};
-    }
-    </#list>
+    public List<${name?cap_first}> list(${name?cap_first} ${name});
+
+    public int insert(${name?cap_first} ${name});
+
+    public int update(${name?cap_first} ${name});
+
 }

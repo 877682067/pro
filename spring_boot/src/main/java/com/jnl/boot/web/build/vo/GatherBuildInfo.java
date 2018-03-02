@@ -7,6 +7,7 @@ public class GatherBuildInfo {
     private DataBaseConnector dataBase;
 
     private String fileUrl;
+    private String packag;
 
 
     public String getTableName() {
@@ -31,5 +32,13 @@ public class GatherBuildInfo {
 
     public void setDataBase(DataBaseConnector dataBase) {
         this.dataBase = dataBase;
+    }
+
+    public String getPackag() {
+        return packag;
+    }
+
+    public void setPackag(String packag) {
+        this.packag = packag;
     }
 }

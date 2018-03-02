@@ -14,17 +14,11 @@ public class BuildTable {
     public BuildTable(){
     }
 
-    public boolean build(Table table){
+    public boolean build(Table table) throws IOException, TemplateException {
         this.table = table;
-        try {
-            this.buildClass();
-            this.buildMapper();
-            this.buildView();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (TemplateException e) {
-            e.printStackTrace();
-        }
+        this.buildClass();
+        this.buildMapper();
+        //this.buildView();
         return true;
     }
 
@@ -32,7 +26,8 @@ public class BuildTable {
 
     }
 
-    private void buildMapper() {
+    private void buildMapper() throws IOException, TemplateException {
+        FreemakerUtils.createFile(table, FtlType.mapper);
     }
 
     private void buildClass() throws IOException, TemplateException {
@@ -46,16 +41,26 @@ public class BuildTable {
         FreemakerUtils.createFile(table, FtlType.entity);
     }
 
-    private void buildService() {
-
+    private void buildService() throws IOException, TemplateException {
+        FreemakerUtils.createFile(table, FtlType.service);
+        FreemakerUtils.createFile(table, FtlType.serviceImpl);
     }
-    private void buildMapperInterFace() {
+    private void buildMapperInterFace()throws IOException, TemplateException {
+        FreemakerUtils.createFile(table, FtlType.mapperInterface);
     }
-    private void buildController() {
+    private void buildController() throws IOException, TemplateException {
+        FreemakerUtils.createFile(table, FtlType.controller);
     }
 
     public BuildTable setTable(Table table){
         this.table = table;
         return this;
+    }
+
+    public static String getContextPath(Table table) {
+        String path = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+        path += table.getPackag().replace(".","/");
+        path +="/"+table.getMark();
+        return path;
     }
 }

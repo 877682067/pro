@@ -2,6 +2,7 @@ package com.jnl.boot.config;
 
 import javax.sql.DataSource;
 
+import com.jnl.boot.web.handler.ColumnNameHandler;
 import com.jnl.boot.web.handler.DataTypeHandler;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -33,8 +34,9 @@ public class MyIbatisConfig {
 		bean.setMapperLocations(resolver.getResources("classpath*:com/jnl/boot/web/*/mapper/*.xml"));
         PagingPlugin plugin = new PagingPlugin();
 		bean.setPlugins(new Interceptor[]{plugin});
-		TypeHandler[] handlers = new TypeHandler[1];
+		TypeHandler[] handlers = new TypeHandler[2];
 		handlers[0] = new DataTypeHandler();
+		handlers[1] = new ColumnNameHandler();
 		bean.setTypeHandlers(handlers);
         try {
 			return bean.getObject();

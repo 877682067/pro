@@ -1,18 +1,22 @@
-package #{url}.entity;
+package ${packag}.entity;
 
+import ${packag}.entity.${name?cap_first};
+import java.util.List;
 
-public class #{tableName?cap_first}{
+public interface ${name?cap_first}Mapper{
+
+    <#assign idType="Integer"/>
     <#list columns as column>
-
-    private #{column.type} #{column.name};//#{column.columnComment}
+        <#if column.oriName =="id">
+            <#assign idType=column.dataType/>
+        </#if>
     </#list>
+    public ${name?cap_first} get${name?cap_first}ById(${idType} id);
 
-    <#list columns as column>
-    public void set#{column.name?cap_first}(#{column.type}  #{column.name}){
-        this.#{column.name} = #{column.name}
-    }
-    public #{column.type} get#{column.name?cap_first}(){
-        return #{column.name};
-    }
-    </#list>
+    public List<${name?cap_first}> list(${name?cap_first} ${name});
+
+    public int insert(${name?cap_first} ${name});
+
+    public int update(${name?cap_first} ${name});
+
 }

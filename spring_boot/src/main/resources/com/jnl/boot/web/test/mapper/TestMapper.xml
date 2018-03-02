@@ -4,8 +4,8 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jnl.boot.web.test.mapper.TestMapper">
 	
-	<select id="list" parameterType="com.jnl.boot.web.page.PageParam" resultType="com.jnl.boot.web.test.entity.Test">
+<!--	<select id="list" parameterType="com.jnl.boot.web.page.PageParam" resultType="com.jnl.boot.web.test.entity.Test">
 		select *  from test
-	</select>
+	</select>-->
 
 </mapper>

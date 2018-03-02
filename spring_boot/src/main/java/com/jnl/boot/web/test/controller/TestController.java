@@ -17,8 +17,8 @@ public class TestController {
 	private TestMapper  testmapper;
 	@RequestMapping("/test")
 	public String list() {
-		List ls=testmapper.list(null);
-		logger.info(ls.size()+"");
+		/*List ls=testmapper.list(null);
+		logger.info(ls.size()+"");*/
 		return  null;
 	}
 }

@@ -3,31 +3,22 @@ package com.jnl.boot.test;
 
 public class Example {
 
-	static  Integer str = 1;//引用传递
-	static  String str1 = "1";//引用传递
-	static  char[] array = {'a','b','c'};//值传递
-	static{
-		
+	String name = "zhangsan";
+
+	public Example(String name){
+		System.out.println("初始化："+name);
+		//this.name = name;
 	}
-	
-	public void change(int str ,String[] array){
-		str =2;
-		array = new String[3];
-		array[0]="d";
+	{
+		System.out.println("代码块："+name);
+		name = "lisi";
 	}
-	
 	public static void main(String[] args){
-		
-		Integer int1 = 1;
-		Integer int2 = 1;
-		Integer hint1 = 129;
-		Integer hint2 = 129;
-		System.out.print(int1==int2);
-		System.out.print(hint1==hint2);
-		/*ex.change(ex.str,ex.array);*/
-		
-	/*	System.out.print(ex.str+"and");
-		System.out.print(ex.array[0]);*/
+
+		Example ex = new Example("wangermazi");
+		System.out.println("ex :"+ex.name);
+		Example ex2 = new Example("王五");
+		System.out.println(ex2.name);
 	}
 	
 	class Student{

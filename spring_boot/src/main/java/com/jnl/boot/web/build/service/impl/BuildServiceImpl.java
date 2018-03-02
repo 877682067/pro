@@ -5,8 +5,11 @@ import com.jnl.boot.web.build.service.BuildService;
 import com.jnl.boot.web.build.service.TableService;
 import com.jnl.boot.web.build.tools.BuildTable;
 import com.jnl.boot.web.build.vo.GatherBuildInfo;
+import freemarker.template.TemplateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 
 @Service("buildService")
 public class BuildServiceImpl implements BuildService{
@@ -15,10 +18,17 @@ public class BuildServiceImpl implements BuildService{
     private TableService tableService;
 
     @Override
-    public boolean build(GatherBuildInfo info) {
+    public Table build(GatherBuildInfo info) {
         Table table = tableService.getTable(info);
+        table.setPackag(info.getPackag());
         BuildTable build = new BuildTable();
-        build.build(table);
-        return false;
+        try {
+            build.build(table);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (TemplateException e) {
+            e.printStackTrace();
+        }
+        return table;
     }
 }
