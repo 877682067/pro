@@ -20,7 +20,7 @@ public class Table {
     private String mark;
 
     public Table(){
-        this.mark = this.getRodomFileName();
+        this.mark = "";
     }
 
     public String getName() {
@@ -48,7 +48,7 @@ public class Table {
     }
 
     public String getPackag() {
-        return packag;
+        return packag+"."+this.getName();
     }
 
     public void setPackag(String packag) {

@@ -1,7 +1,7 @@
 package com.jnl.boot.utils;
 
 import com.jnl.boot.web.build.entity.Table;
-import com.jnl.boot.web.build.tools.BuildTable;
+import com.jnl.boot.web.build.tools.CodeBuilder;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -22,14 +22,14 @@ public class FreemakerUtils {
 
 
     public static void createFile(Table table,FtlType ftlType) throws IOException, TemplateException {
-        Template temp = freemaker.getTemplate(ftlType.getName());
-        String path = BuildTable.getContextPath(table);
+        Template temp = freemaker.getTemplate(ftlType.getTemplateName());
+        String path = CodeBuilder.getContextPath(table);
         path +="/"+ftlType.getDir();
         File file = new File(path);
         if(!file.exists()){
             file.mkdirs();
         }
-        OutputStream fos = new FileOutputStream( new File(path, ftlType.getFileName(table.getName())+".java")); //java文件的生成目录
+        OutputStream fos = new FileOutputStream( new File(path, ftlType.getFileName(table.getName()))); //java文件的生成目录
         Writer out = new OutputStreamWriter(fos);
         temp.process(table,out);
 

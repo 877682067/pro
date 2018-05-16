@@ -2,9 +2,9 @@
 
 public interface Biology {
 	
-	public boolean eat(Food food);
+	boolean eat(Food food);
 	
-	public String  getName();
+	String  getName();
 	
-	public String getAge();
+	String getAge();
 }

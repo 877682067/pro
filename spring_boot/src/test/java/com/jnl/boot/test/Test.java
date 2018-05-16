@@ -25,9 +25,9 @@ import com.jnl.boot.run.Application;
 
 import junit.framework.Assert;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+/*@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes=Application.class)
-@WebAppConfiguration
+@WebAppConfiguration*/
 public class Test {
 	
 	@Autowired 
@@ -42,12 +42,12 @@ public class Test {
 	{
 		mockMvc = MockMvcBuilders.webAppContextSetup(webContext).build();
 	}
-	@org.junit.Test
+	//@org.junit.Test
 	public void  test() {
 		
 		load("classpath:shiro.ini");
 		login("zhang", "123");
-		/*printList(subject.hasRoles(Arrays.asList("role2","role1")));*/
+		printList(subject.hasRoles(Arrays.asList("role2","role1")));
 	/*	printList(subject.isPermitted("user:create","user:update"));*/
 		subject.checkPermission("user:delete"); 
 	}

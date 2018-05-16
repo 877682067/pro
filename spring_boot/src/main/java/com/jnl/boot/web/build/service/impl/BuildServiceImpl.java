@@ -3,7 +3,7 @@ package com.jnl.boot.web.build.service.impl;
 import com.jnl.boot.web.build.entity.Table;
 import com.jnl.boot.web.build.service.BuildService;
 import com.jnl.boot.web.build.service.TableService;
-import com.jnl.boot.web.build.tools.BuildTable;
+import com.jnl.boot.web.build.tools.CodeBuilder;
 import com.jnl.boot.web.build.vo.GatherBuildInfo;
 import freemarker.template.TemplateException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class BuildServiceImpl implements BuildService{
     public Table build(GatherBuildInfo info) {
         Table table = tableService.getTable(info);
         table.setPackag(info.getPackag());
-        BuildTable build = new BuildTable();
+        CodeBuilder build = new CodeBuilder();
         try {
             build.build(table);
         } catch (IOException e) {

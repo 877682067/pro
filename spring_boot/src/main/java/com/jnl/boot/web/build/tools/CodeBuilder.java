@@ -7,14 +7,14 @@ import freemarker.template.TemplateException;
 
 import java.io.IOException;
 
-public class BuildTable {
+public class CodeBuilder {
 
     private Table table;
 
-    public BuildTable(){
+    public CodeBuilder(){
     }
 
-    public boolean build(Table table) throws IOException, TemplateException {
+    public  boolean build(Table table) throws IOException, TemplateException {
         this.table = table;
         this.buildClass();
         this.buildMapper();
@@ -52,7 +52,7 @@ public class BuildTable {
         FreemakerUtils.createFile(table, FtlType.controller);
     }
 
-    public BuildTable setTable(Table table){
+    public CodeBuilder setTable(Table table){
         this.table = table;
         return this;
     }

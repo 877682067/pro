@@ -2,6 +2,7 @@ package ${packag}.entity;
 
 import ${packag}.entity.${name?cap_first};
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface ${name?cap_first}Mapper{
 
@@ -16,6 +17,8 @@ public interface ${name?cap_first}Mapper{
     public List<${name?cap_first}> list(${name?cap_first} ${name});
 
     public int insert(${name?cap_first} ${name});
+
+    public int insertList(@Param("list")List<${name?cap_first}> ${name}List);
 
     public int update(${name?cap_first} ${name});
 

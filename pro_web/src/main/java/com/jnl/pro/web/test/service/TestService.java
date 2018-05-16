@@ -7,7 +7,7 @@ import com.jnl.pro.web.test.entity.Test;
 
 public interface TestService {
 
-	public List list(PageParam<Test> param);
+	List list(PageParam<Test> param);
 	
 	
 }

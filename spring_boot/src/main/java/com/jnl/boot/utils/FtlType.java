@@ -2,31 +2,51 @@ package com.jnl.boot.utils;
 
 public enum FtlType {
 
-    entity("entity","entity"),service("service","service"),controller("controller","controller"),serviceImpl("serviceImpl","service/impl")
-    ,mapperInterface("mapperInterface","mapper"),mapper("mapper","mapper","xml");
+    entity("entity","","entity")
+    ,serviceImpl("service/impl","serviceImpl")
+    ,service("service","service","service","I")
+    ,controller("controller")
+    ,mapperInterface("mapper","mapper","mapperInterface")
+    ,mapper("mapper","mapper","mapper","","xml");
 
-    private String name;
+    private String suffix;
     private String dir;
+    private String tempName;
     private String fileType;
+    private String prefix;
 
-    FtlType(String name,String dir){
-        this(name,dir,"java");
+    FtlType(String suffix){
+        this(suffix,suffix);
     }
-    FtlType(String name,String dir,String fileType){
-        this.name = name;
+    FtlType(String dir,String suffix){
+        this(dir,suffix,suffix);
+    }
+
+    FtlType(String dir, String suffix, String tempName) {
+        this(dir,suffix,tempName,"");
+    }
+    FtlType(String dir,String suffix,String tempName,String prefix){
+        this(dir,suffix,tempName,prefix,"java");
+    }
+    FtlType(String dir,String suffix,String tempName,String prefix,String fileType){
         this.dir = dir;
+        this.suffix = suffix;
+        this.tempName = tempName;
+        this.prefix = prefix;
         this.fileType = fileType;
     }
-    public String getName(){
-        return name+".ftl";
+
+    public String getTemplateName(){
+        return tempName +".ftl";
+    }
+    private String getFileName(){
+        return suffix+"."+fileType;
     }
     public String getDir(){
         return dir;
     }
     public String getFileName(String tableName){
         tableName = StringUtil.captureName(tableName);
-        if(name.equals(entity))
-            return tableName;
-        return tableName+StringUtil.captureName(name);
+        return prefix + tableName+StringUtil.captureName(this.getFileName());
     }
 }

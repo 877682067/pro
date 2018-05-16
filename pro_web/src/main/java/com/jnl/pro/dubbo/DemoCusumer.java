@@ -11,5 +11,6 @@ public class DemoCusumer {
         DemoService demoService = (DemoService) context.getBean("demoService"); // obtain proxy object for remote invocation
         String hello = demoService.sayHello("world"); // execute remote invocation
         System.out.println(hello); // show the result
+        demoService.sayHello("院校"); // execute remote invocation
     }
 }

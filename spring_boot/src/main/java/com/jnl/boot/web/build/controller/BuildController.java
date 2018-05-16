@@ -16,7 +16,7 @@ public class BuildController {
     @Autowired
     BuildService buildService;
 
-    @RequestMapping("/")
+    @RequestMapping("/tobuild")
     public ModelAndView toGatherInfo(HttpServletRequest request){
         //创建实体 Mapper  Mapper xml  增删改查页面
         return  new ModelAndView("input");
@@ -25,7 +25,7 @@ public class BuildController {
     @RequestMapping("/build")
     public ModelAndView createInfo(GatherBuildInfo info, HttpServletRequest request){
         Table build = buildService.build(info);
-        ModelAndView view = new ModelAndView("columnInput");
+        ModelAndView view = new ModelAndView("/");
         view.addObject("table",build);
         return view;
     }

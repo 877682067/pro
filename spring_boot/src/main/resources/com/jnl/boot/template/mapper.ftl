@@ -12,8 +12,10 @@
     </resultMap>
     <sql id="base_column_list" >
         <#assign listColumn =''/>
+        <#assign updateEL =''/>
         <#list columns as column>
-            <#assign listColumn =listColumn+column.oriName+","/>
+            <#assign listColumn = listColumn + column.oriName + ","/>
+            <#assign updateEL = updateEL + "#\{item."+column.column+"},"/>
         </#list>
         ${listColumn?substring(0,listColumn?length-1)}
     </sql>
@@ -22,7 +24,7 @@
         <trim  suffixOverrides="," >
         <#list columns as column>
             <if test="${column.column} != null and ${column.column} != ''" >
-                and ${column.oriName} =  \#\{${column.column}\}
+                and ${column.oriName} =   ${r'#{'}${column.column}}
             </if>
         </#list>
         </trim>
@@ -40,9 +42,9 @@
         from
             ${baseName}
         where
-            id = \#\{id\}
+            id = ${r'#{id}'}
     </select>
-    <select id="insert" parameterType="Object" resultMap="${mapperMap}">
+    <insert id="insert" parameterType="Object">
         insert into ${baseName} (
         <trim  suffixOverrides="," >
         <#list columns as column>
@@ -55,25 +57,36 @@
         <trim  suffixOverrides="," >
         <#list columns as column>
             <if test="${column.column} != null and ${column.column} != ''" >
-                \#\{${column.column}\}
+            ${r'#{'}${column.column}}
             </if>
         </#list>
         </trim>
         )
-    </select>
-    <select id="update" parameterType="Object" resultMap="${mapperMap}">
+    </insert>
+    <insert id="insertList" parameterType="Object">
+        insert into ${baseName} (
+            ${listColumn?substring(0,listColumn?length-1)}
+        ) values
+        <foreach collection="list" item="item" separator=",">
+            ( ${updateEL?substring(0,updateEL?length-1)})
+        </foreach>
+
+    </insert>
+
+    <update id="update" parameterType="Object">
         update
             ${baseName}
         set
         <trim  suffixOverrides="," >
         <#list columns as column>
             <if test="${column.column} != null and ${column.column} != ''" >
-                and ${column.oriName} =  \#\{${column.column}\}
+                and ${column.oriName} =  ${r'#{'}${column.column}}
             </if>
             <if test="${column.column} != null  ">
-                ${column.oriName}=\#\{${column.column}\},
+                ${column.oriName}=${r'#{'}${column.column}},
             </if>
         </#list>
-        </trim> where id=\#\{id\}
-    </select>
+        </trim>
+        where id=${r'#{id}'}
+    </update>
 </mapper>

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ColumnMapper {
 
-    public List<Column> list(Column info);
+    List<Column> list(Column info);
 
     List<Column> getColumnsByTable(Column column);
 }

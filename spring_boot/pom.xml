@@ -27,7 +27,6 @@
 	            <artifactId>spring-boot-dependencies</artifactId>
 	            <version>1.5.7.RELEASE</version>
 	            <type>pom</type>
-	            <scope>import</scope>
 	        </dependency>
 	        <dependency>
 			    <groupId>org.mybatis.spring.boot</groupId>
@@ -85,7 +84,8 @@
 	        <plugin>
 	            <groupId>org.springframework.boot</groupId>
 	            <artifactId>spring-boot-maven-plugin</artifactId>
-	        </plugin>
+				<version>1.5.4.RELEASE</version>
+			</plugin>
 	    </plugins>
 	</build>
 </project>

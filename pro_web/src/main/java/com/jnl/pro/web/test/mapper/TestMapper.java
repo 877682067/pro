@@ -10,7 +10,7 @@ import com.jnl.pro.web.test.entity.Test;
 @Repository
 public interface TestMapper {
 	
-	public List<Test> list(PageParam<Test> param);
+	List<Test> list(PageParam<Test> param);
 /*
 	public List<Test> list(Test param);
 	

@@ -1,5 +1,7 @@
 package ${packag}.entity;
 
+import java.util.Date;
+
 public class ${name?cap_first}{
     <#list columns as column>
 

@@ -54,11 +54,8 @@ public class BitAndWildPermission implements  PermissionResolver {
 			 } 
 			 if(!(this.permissionBit ==0 || (this.permissionBit & other.permissionBit) != 0)) { 
 				return false; 
-			 } 
-			 if(!("*".equals(this.instanceId) || this.instanceId.equals(other.instanceId))) { 
-				return false; 
-			 } 
-			 return true; 
-		}
+			 }
+            return "*".equals(this.instanceId) || this.instanceId.equals(other.instanceId);
+        }
 	}
 }

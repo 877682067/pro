@@ -7,7 +7,7 @@ public enum JavaType {
     Date("Date","date","time","year","datatime","timestamp"),Long("Long","bigint"),Float("Float","float");
     private String[] sqlDataType;
     private String type;
-    private JavaType(String type,String... dataTypes){
+    JavaType(String type, String... dataTypes){
         this.type = type;
         sqlDataType = dataTypes;
     }

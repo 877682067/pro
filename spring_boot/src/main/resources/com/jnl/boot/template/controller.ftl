@@ -1,12 +1,14 @@
 package ${packag}.controller;
 
-import ${packag}.${name}.*
+import ${packag}.service.*;
+import ${packag}.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
+
 @Controller
 @RequestMapping("/${name}")
 public class ${name?cap_first}Controller{
@@ -18,7 +20,7 @@ public class ${name?cap_first}Controller{
     @RequestMapping("/list")
     public ModelAndView list( ${name?cap_first}  ${name}){
         ModelAndView view = new ModelAndView();
-        List<${name?cap_first}> ${name}List =  ${service}.list();
+        List<${name?cap_first}> ${name}List =  ${service}.list(${name});
         view.addObject("data",${name}List);
         view.setViewName("${name}/list");
         return view;
